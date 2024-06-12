@@ -19,4 +19,6 @@ public class BlogDTO {
 	
 	private String commnetName;
 	private String commnetOpinion;
+	
+	
 }
