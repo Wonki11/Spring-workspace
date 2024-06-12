@@ -13,14 +13,14 @@ public class Indexcontroller {
 	@GetMapping("cafe/cafe-index") // 주소창에서 back과 front가 만나는 주소
 	public String cafeMainMethod() {
 		log.info("cafe index 메인으로 이동");
-		return "cafe/index"; // html 파일 위치
+		return "cafe/cafe-index"; // html 파일 위치
 	}
 	
 	//blog-index로 이동하는 GetMapping 만들기 
 	@GetMapping("blog/blog-index")
 	public String blogMainMethod() {
 		log.info("blog index 메인으로 이동");
-		return "blog/index";
+		return "blog/blog-index";
 		
 		
 		

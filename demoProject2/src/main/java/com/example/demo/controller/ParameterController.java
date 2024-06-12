@@ -1,10 +1,17 @@
 package com.example.demo.controller;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 //Bean : 스프링이 알아서 만들고 관리한다는 것
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import com.example.demo.model.dto.MemberDTO;
 
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
@@ -87,11 +94,103 @@ public class ParameterController {
 	
 	// 400 Bad Request(잘못된 요청)
 	// - 파라미터 불충분 
+	/*
+	 * 제목 : <input type="text" name="title"><br>
+		작성자 : <input type="text" name="writer"><br> 
+		가 격 : <input type="number" name="price"><br>
+		출판사 : <input type="text" name="publisher"><br>
+	 * */
 	@PostMapping("test2")
-	public String paramTest2(/*RequestParam은 여기에 보통 작성*/) {
+	public String paramTest2(@RequestParam(/*value=*/"title"/*,required=true*/)String title,
+							@RequestParam("writer")String writer, 
+							@RequestParam("price")int price,
+							@RequestParam(value="publisher",defaultValue="교보문고" , required=false)String publisher)  {
+							 
 		log.info("문제없이 insert 가능한지 확인하기");
+		log.debug("title : " + title);
+		log.debug("writer : " + writer);
+		log.debug("price : " + price);
+		log.debug("publisher : " + publisher);
 		
 		return"redirect:/param/main";
 		
 	}
+	
+	/*3. @RequestParam 여러 개 (복수, 다수) 파라미터 */ 
+	
+	//String[]
+	//List<자료형>
+	//Map<String,Object>
+	
+	//defaultValue 속성은 사용할 수 없음
+	
+	@PostMapping("test3")
+	public String paramTest3(@RequestParam(value="color" , required=false) String[] colorArr,
+							 @RequestParam(value="fruit", required=false) List<String> fruitList,
+							 @RequestParam Map<String,Object> paramMap
+			) {
+		
+		log.info("colorArr : " + Arrays.toString(colorArr));
+		
+		log.info("fruitList : " + fruitList);
+		
+		log.info("paramMap : " + paramMap);
+		
+		return "redirect:/param/main";
+	}
+	
+	/*
+	 * DTO와 VO
+	 * DTO : Data Transfer Object 데이터 캡슐화를 통해 데이터를 전달하고 관리
+	 * 		 한 계층에서 다른 계층으로 데이터 전송을 위해 사용 (단순히 전송만 목적으로 함)
+	 * 		 계층이란 ? html에서 db 로 간다 (한 계층에서 다른 계층으로 전송)
+	 * 
+	 * VO : Value object 값 자체를 표현하는 객체
+	 * 		한 번 값이 생성되면 그 값을 변경할 수 없음 
+	 * 		생성자를 통해 값을 설정하고 setter 메서드를 제공하지는 않음
+	 * 
+	 * 
+	 * 
+	 * @ModelAttribute
+	 * 	- DTO(또는 VO) 와 같이 사용하는 어노테이션
+	 * 
+	 *  - 전달받은 파라미터(매개변수)의 name 속성 값이 
+	 *  - 같이 사용되는 DTO의 필드명과 같다면 
+	 *  - 자동으로 setter를 호출해서 필드에 값을 저장 
+	 *  
+	 *  [주의사항]
+	 *  -DTO에 기본 생성자 필수로 존재해야함 
+	 *  -DTO에 setter가 필수로 존재해야함 
+	 *  
+	 *  어노테이션이 자동으로 생략 가능
+	 *  
+	 *  @ModelAttribute 이용해 값이 필드에 저장된 객체를 커맨드 객체라고 함
+	 * */
+	
+	
+	
+	@PostMapping("test4")
+	public String paramTest4(/*@ModelAttribute*/ MemberDTO inputMember) {
+		
+		//lombok으로 만든 setter getter로 값 가져오거나 설정하기 
+		MemberDTO mem = new MemberDTO();
+		mem.getMemberAge(); //getter를 통해 나이 가져오기
+		mem.setMemberAge(0); // setter를 통해 나이 가져오기
+		mem.getMemberId();
+		mem.setMemberId("1");
+		mem.getMemberName();
+		mem.setMemberName("가나다");
+		mem.getMemberPw();
+		mem.setMemberPw("pass01");
+		
+		//getter setter 이용해서 나머지 정보 가져오기
+		//굳이 따로 만들지 않아도 lombok @getter @setter 를 만들어 가져오기 때문에 사용 가능 
+		
+		log.info("inputMember에 대한 정보 가져오기 : " + inputMember.toString());
+	
+		
+		return "redirect:/param/main";
+	}
+	
+	
 }
