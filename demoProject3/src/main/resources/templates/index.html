@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="www,thymeLeaf.org">
 <head>
 <meta charset="utf-8">
 <title>ThymeLeaf</title>
@@ -31,7 +31,7 @@
 		[사용법]
 		html 에서 
 		<!Doctype html> 밑에 작성된
-		<html xmins:th="http://www.whymeleaf.org"> 작성 후 사용이 가능
+		<html xmins:th="http://www.thymeleaf.org"> 작성 후 사용이 가능
 		http://www.thymeleaf.org 이 주소를 가져오는데 th를 사용해서 작성
 		
 		html xmlns:별칭="템플릿가져올 주소"		
@@ -40,6 +40,28 @@
 	
 	<ol> 
 		<li><a href="/example/ex1">타임리프예제</a></li>
+		
+		<li>
+			<form action="/example/ex2" method="post">
+				<h4>타임리프 예제</h4>
+				이름 : <input type="text" name="inputName"><br>
+				나이 : <input type="number" name="inputAge"><br>
+				
+				<br>
+				
+				색상 : 
+				RED <input type="checkbox" name="color" value="Red">
+				Green <input type="checkbox" name="color" value="Green">
+				Blue <input type="checkbox" name="color" value="Blue">
+				<button>제출하기</button>
+			</form>
+		</li>
+		
+		<li>
+			<a href="/example/ex3">타임리프 예제 3</a>
+		</li>
 	</ol>
+	
+	 <th:block th:replace="~{Layout/footer}"></th:block>
 </body>
 </html>

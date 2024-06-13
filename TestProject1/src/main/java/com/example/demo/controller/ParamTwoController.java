@@ -20,11 +20,11 @@ public String param2(@RequestParam("snackName")String snackName,
 		@RequestParam("snackCompany")String snackCompany,
 		@RequestParam("snackPrice")int snackPrice,
 		@RequestParam(value="snackLike",defaultValue="snackLike",required=false)String snackLike		
-		)
+		) {
 
 
 
-{
+
 	log.info(snackName);
 	log.info(snackCompany);
 	log.info("snackPrice" + snackPrice);
