@@ -15,7 +15,7 @@ import lombok.ToString;
 @Getter 
 @Setter
 @NoArgsConstructor // 기초생성자
-@AllArgsConstructor
+@AllArgsConstructor // 필수생성자
 @ToString
 public class MemberDTO {
 	// 나중에 db랑 연결할 모델들 작성

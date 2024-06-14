@@ -13,6 +13,6 @@ mappers 라는 폴더를 만들어서 mappers 안에 xml 파일을 생성
  	평소 작성했던 select sql 작성
  </select>
  
-  <insert id="" parameterType="넣을값가져오기">
+ <!--   <insert id="" parameterType="넣을값가져오기">
  	insert sql 작성
- </insert>
+ </insert>-->
