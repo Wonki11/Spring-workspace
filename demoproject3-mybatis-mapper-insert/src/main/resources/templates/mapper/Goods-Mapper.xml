@@ -11,7 +11,7 @@
 		<!-- SQL 작성할 테이블 id,name,price quantity -->
 		INSERT INTO goods (goods_id, goods_name, goods_price, goods_quantity)
 										<!--  #{dto.Goods에 적은 변수명}과 SQL에 연결할 컬럼명을 각각 작성해주기 -->
-					VALUES(goods_seq.NEXTVAL, #{goodsName}, #{goodsPrice},#{goodsQuantity})
+		VALUES(goods_seq.NEXTVAL, #{goodsName}, #{goodsPrice},#{goodsQuantity})
 					
 	
 	
