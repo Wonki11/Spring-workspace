@@ -9,7 +9,7 @@
 
 	<!-- 제품과 회사명 모두 보는 join select 문 -->
 	<select id="getAllSC" resultType="com.khmall.dto.SC">
-		SELECT s.snack_id, s.snack_name, s.price, c.company_name, c.company_phone , c.company_address
+		SELECT s.snack_id, s.snack_name, s.price,c.company_id, c.company_name, c.company_phone , c.company_address
 		FROM snacks s, company c
 		WHERE s.company_id = c.company_id
 	</select>
