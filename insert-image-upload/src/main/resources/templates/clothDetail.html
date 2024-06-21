@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<title>상세보기</title>
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+	<h1>상세보기</h1>
+	<div class="container">
+		<h1 th:text="${clothes.clothes_name} + '상세정보'"></h1>
+	</div>
+	<div class="detail">
+		<img th:src="@{${clothes.clothes_image_path}}">
+	</div>
+	<div class="detail">
+		<span th:text="${clothes.clothes_name"></span>
+	</div>
+</body>
+</html>
